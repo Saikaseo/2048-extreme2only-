@@ -19,18 +19,18 @@ let isAnimating = false;
 // true  = 無効な移動でも2を追加
 //
 let addTileOnInvalidMove = false;
-
+let invalidMoveOccurred = false;
 // ========================================
 // HTML要素
 // ========================================
 
 const boardDiv = document.getElementById("board");
 
-const validOnlyModeButton =
-document.getElementById("validOnlyMode");
+const modeBox =
+    document.getElementById("modeBox");
 
 const everyMoveModeButton =
-document.getElementById("everyMoveMode");
+    document.getElementById("everyMoveMode");
 
 // ========================================
 // タイル作成
@@ -652,6 +652,12 @@ for(let r = 0; r < SIZE; r++){
 
 if(!moved){
 
+    // 無効な移動が発生したことを記録
+    invalidMoveOccurred = true;
+
+    updateModeButtons();
+
+
     // processLineで増えたスコアを元に戻す
     score = beforeScore;
 
@@ -726,15 +732,15 @@ if(!moved){
 // 有効な移動
 // ====================================
 
-// 有効な移動をしたら
-// 「無効な移動でも2を追加」モードを終了
-if(addTileOnInvalidMove){
+// ====================================
+// 有効な移動をしたら通常状態へ戻す
+// ====================================
 
-    addTileOnInvalidMove = false;
+addTileOnInvalidMove = false;
 
-    updateModeButtons();
+invalidMoveOccurred = false;
 
-}
+updateModeButtons();
 
 
 history.push({
@@ -984,32 +990,30 @@ updateScore();
 }
 
 // ========================================
-// モード切り替え表示
+// モード切り替えボタンの表示
 // ========================================
 
 function updateModeButtons(){
 
-if(addTileOnInvalidMove === false){
+    // 特殊モード中は非表示
+    if(addTileOnInvalidMove){
 
-    validOnlyModeButton.classList.add(
-        "active"
-    );
+        modeBox.style.display = "none";
 
-    everyMoveModeButton.classList.remove(
-        "active"
-    );
+        return;
+    }
 
-}else{
 
-    validOnlyModeButton.classList.remove(
-        "active"
-    );
+    // 無効な移動が発生したら表示
+    if(invalidMoveOccurred){
 
-    everyMoveModeButton.classList.add(
-        "active"
-    );
+        modeBox.style.display = "block";
 
-}
+    }else{
+
+        modeBox.style.display = "none";
+
+    }
 
 }
 
@@ -1050,6 +1054,8 @@ everyMoveModeButton.addEventListener(
         }
 
         addTileOnInvalidMove = true;
+
+        invalidMoveOccurred = false;
 
         updateModeButtons();
 
