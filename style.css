@@ -490,10 +490,10 @@ button:hover {
 }
 
     .moving-tile.n128,
-    .moving-tile.n256,
-    .moving-tile.n512 {
-        font-size: 7.5vw;
-    }
+.moving-tile.n256,
+.moving-tile.n512 {
+    font-size: 34px;
+}
 
 .moving-tile.n1024,
 .moving-tile.n2048,
@@ -502,7 +502,7 @@ button:hover {
 .moving-tile.n16384,
 .moving-tile.n32768,
 .moving-tile.n65536 {
-    font-size: 6.5vw;
+    font-size: 28px;
 }
 
     .mode-button {
