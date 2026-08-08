@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 
 <head>
@@ -13,45 +12,39 @@
 
 <div class="container">
 
-<h1>2048</h1>
+    <h1>2048</h1>
 
-<div class="top-bar">
+    <div class="top-bar">
 
-    <div class="score-box">
-        SCORE
-        <span id="score">0</span>
+        <div class="score-box">
+            SCORE
+            <span id="score">0</span>
+        </div>
+
+        <button id="undo">
+            戻す
+        </button>
+
+        <button id="restart">
+            リスタート
+        </button>
+
     </div>
 
-    <button id="undo">
-        戻す
-    </button>
+    <!-- 無効な移動後に表示するボタン -->
+    <div class="mode-box" id="modeBox">
 
-    <button id="restart">
-        リスタート
-    </button>
+        <button id="everyMoveMode" class="mode-button">
+            強制追加
+        </button>
 
-</div>
+    </div>
 
-
-<!-- 追加：2の出現ルール -->
-<div class="mode-box">
-
-<!-- 無効な移動後にだけ表示するボタン -->
-<div class="mode-box" id="modeBox">
-
-    <button id="everyMoveMode" class="mode-button">
-        強制追加
-    </button>
-
-</div>
-
-
-<div id="board"></div>
+    <div id="board"></div>
 
 </div>
 
 <script src="script.js"></script>
 
 </body>
-
 </html>

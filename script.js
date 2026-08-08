@@ -118,11 +118,17 @@ drawBoard();
 
 function initBoard(){
 
-score = 0;
+    score = 0;
 
-history = [];
+    history = [];
 
-board = [];
+    board = [];
+
+    // モードを通常状態に戻す
+    addTileOnInvalidMove = false;
+    invalidMoveOccurred = false;
+
+    updateModeButtons();
 
 for(let r = 0; r < SIZE; r++){
 
@@ -995,52 +1001,43 @@ updateScore();
 
 function updateModeButtons(){
 
-    // 特殊モード中は非表示
+    // ====================================
+    // 強制追加モード中
+    // ====================================
+
     if(addTileOnInvalidMove){
 
-        modeBox.style.display = "none";
+        modeBox.style.visibility = "hidden";
 
         return;
     }
 
 
-    // 無効な移動が発生したら表示
+    // ====================================
+    // 無効な移動が発生した
+    // ====================================
+
     if(invalidMoveOccurred){
 
-        modeBox.style.display = "block";
+        modeBox.style.visibility = "visible";
 
-    }else{
+    }
 
-        modeBox.style.display = "none";
+    // ====================================
+    // 通常状態
+    // ====================================
+
+    else{
+
+        modeBox.style.visibility = "hidden";
 
     }
 
 }
 
-// ========================================
-// 「通常モード」ボタン
-// ========================================
-
-validOnlyModeButton.addEventListener(
-    "click",
-    function(){
-
-        if(isAnimating){
-
-            return;
-
-        }
-
-        addTileOnInvalidMove = false;
-
-        updateModeButtons();
-
-    }
-);
-
 
 // ========================================
-// 「無効な移動でも2を追加」ボタン
+// 「強制追加」ボタン
 // ========================================
 
 everyMoveModeButton.addEventListener(
