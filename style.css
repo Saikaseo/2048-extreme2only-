@@ -195,7 +195,60 @@ button:hover {
     color: white;
     font-size: 28px;
 }
+/* ====================
+   2048以降
+   グラデーション
+==================== */
 
+.n4096 {
+    background: linear-gradient(
+        135deg,
+        #edc22e,
+        #d9a6ff
+    );
+    color: white;
+    font-size: 28px;
+}
+
+.n8192 {
+    background: linear-gradient(
+        135deg,
+        #d9a6ff,
+        #a6d8ff
+    );
+    color: white;
+    font-size: 28px;
+}
+
+.n16384 {
+    background: linear-gradient(
+        135deg,
+        #a6d8ff,
+        #a6ffd8
+    );
+    color: white;
+    font-size: 28px;
+}
+
+.n32768 {
+    background: linear-gradient(
+        135deg,
+        #a6ffd8,
+        #fff3a6
+    );
+    color: white;
+    font-size: 28px;
+}
+
+.n65536 {
+    background: linear-gradient(
+        135deg,
+        #fff3a6,
+        #ffb3b3
+    );
+    color: white;
+    font-size: 28px;
+}
 /* ====================
    タイル移動アニメーション
 ==================== */
@@ -262,7 +315,12 @@ button:hover {
 }
 
 .moving-tile.n1024,
-.moving-tile.n2048 {
+.moving-tile.n2048,
+.moving-tile.n4096,
+.moving-tile.n8192,
+.moving-tile.n16384,
+.moving-tile.n32768,
+.moving-tile.n65536 {
     font-size: 28px;
 }
 
@@ -324,7 +382,50 @@ button:hover {
     background: #edc22e;
     color: white;
 }
+.moving-tile.n4096 {
+    background: linear-gradient(
+        135deg,
+        #edc22e,
+        #d9a6ff
+    );
+    color: white;
+}
 
+.moving-tile.n8192 {
+    background: linear-gradient(
+        135deg,
+        #d9a6ff,
+        #a6d8ff
+    );
+    color: white;
+}
+
+.moving-tile.n16384 {
+    background: linear-gradient(
+        135deg,
+        #a6d8ff,
+        #a6ffd8
+    );
+    color: white;
+}
+
+.moving-tile.n32768 {
+    background: linear-gradient(
+        135deg,
+        #a6ffd8,
+        #fff3a6
+    );
+    color: white;
+}
+
+.moving-tile.n65536 {
+    background: linear-gradient(
+        135deg,
+        #fff3a6,
+        #ffb3b3
+    );
+    color: white;
+}
 /* ====================
    移動中の元タイル
 ==================== */
@@ -394,10 +495,15 @@ button:hover {
         font-size: 7.5vw;
     }
 
-    .moving-tile.n1024,
-    .moving-tile.n2048 {
-        font-size: 6.5vw;
-    }
+.moving-tile.n1024,
+.moving-tile.n2048,
+.moving-tile.n4096,
+.moving-tile.n8192,
+.moving-tile.n16384,
+.moving-tile.n32768,
+.moving-tile.n65536 {
+    font-size: 6.5vw;
+}
 
     .mode-button {
         padding: 8px 10px;
