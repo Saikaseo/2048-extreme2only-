@@ -660,14 +660,12 @@ if(!moved){
 
 
     // ====================================
-    // 「毎回追加」モードの場合
+    // 「無効な移動でも2を追加」モード
     // ====================================
 
     if(addTileOnInvalidMove){
 
-        // 無効な操作でも
         // 2追加前の状態を履歴に保存
-
         history.push({
 
             board:
@@ -692,7 +690,6 @@ if(!moved){
 
 
         // 新しい2を追加
-
         const newTile =
             addRandomTile();
 
@@ -712,7 +709,7 @@ if(!moved){
     }
 
     // ====================================
-    // 「有効な移動のみ」モード
+    // 通常モード
     // ====================================
     else{
 
@@ -728,6 +725,17 @@ if(!moved){
 // ====================================
 // 有効な移動
 // ====================================
+
+// 有効な移動をしたら
+// 「無効な移動でも2を追加」モードを終了
+if(addTileOnInvalidMove){
+
+    addTileOnInvalidMove = false;
+
+    updateModeButtons();
+
+}
+
 
 history.push({
 
@@ -1006,47 +1014,46 @@ if(addTileOnInvalidMove === false){
 }
 
 // ========================================
-// 「有効な移動のみ」ボタン
+// 「通常モード」ボタン
 // ========================================
 
 validOnlyModeButton.addEventListener(
-"click",
-function(){
+    "click",
+    function(){
 
-    if(isAnimating){
+        if(isAnimating){
 
-        return;
+            return;
+
+        }
+
+        addTileOnInvalidMove = false;
+
+        updateModeButtons();
 
     }
-
-    addTileOnInvalidMove = false;
-
-    updateModeButtons();
-
-}
-
 );
 
+
 // ========================================
-// 「毎回追加」ボタン
+// 「無効な移動でも2を追加」ボタン
 // ========================================
 
 everyMoveModeButton.addEventListener(
-"click",
-function(){
+    "click",
+    function(){
 
-    if(isAnimating){
+        if(isAnimating){
 
-        return;
+            return;
+
+        }
+
+        addTileOnInvalidMove = true;
+
+        updateModeButtons();
 
     }
-
-    addTileOnInvalidMove = true;
-
-    updateModeButtons();
-
-}
-
 );
 
 // ========================================
