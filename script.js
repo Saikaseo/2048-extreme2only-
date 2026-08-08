@@ -901,7 +901,8 @@ const cellSize =
         padding * 2 -
         gap * 3
     ) / 4;
-
+const movingTileWidth = cellSize;
+const movingTileHeight = cellSize;
 
 // 各タイルを移動
 
@@ -910,11 +911,17 @@ movements.forEach(function(movement){
     const tile =
         document.createElement("div");
 
-    tile.className =
-        "moving-tile";
+tile.className =
+    "moving-tile";
 
-    tile.textContent =
-        movement.value;
+tile.textContent =
+    movement.value;
+
+tile.style.width =
+    movingTileWidth + "px";
+
+tile.style.height =
+    movingTileHeight + "px";
 
     tile.classList.add(
         "n" + movement.value
