@@ -477,14 +477,14 @@ button:hover {
 
     /* 64以下 */
     .tile {
-        font-size: 9vw;
+        font-size: 10vw;
     }
 
     /* 128～512 */
     .tile.n128,
     .tile.n256,
     .tile.n512 {
-        font-size: 8vw;
+        font-size: 9vw;
     }
 
     /* 1024～8192 */
@@ -499,7 +499,7 @@ button:hover {
     .tile.n16384,
     .tile.n32768,
     .tile.n65536 {
-        font-size: 6vw;
+        font-size: 4vw;
     }
 
 
@@ -509,14 +509,14 @@ button:hover {
 
     /* 64以下 */
     .moving-tile {
-        font-size: 9vw;
+        font-size: 10vw;
     }
 
     /* 128～512 */
     .moving-tile.n128,
     .moving-tile.n256,
     .moving-tile.n512 {
-        font-size: 8vw;
+        font-size: 9vw;
     }
 
     /* 1024～8192 */
@@ -531,7 +531,7 @@ button:hover {
     .moving-tile.n16384,
     .moving-tile.n32768,
     .moving-tile.n65536 {
-        font-size: 6vw;
+        font-size: 4vw;
     }
 
 

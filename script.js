@@ -194,7 +194,7 @@ if(empty.length === 0){
 const cell =
     empty[Math.floor(Math.random() * empty.length)];
 
-board[cell.r][cell.c] = createTile(32);
+board[cell.r][cell.c] = createTile(2);
 
 return {
 
