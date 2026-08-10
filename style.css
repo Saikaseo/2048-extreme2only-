@@ -227,7 +227,7 @@ button:hover {
         #a6ffd8
     );
     color: white;
-    font-size: 28px;
+    font-size: 22px;
 }
 
 .n32768 {
@@ -237,7 +237,7 @@ button:hover {
         #fff3a6
     );
     color: white;
-    font-size: 28px;
+    font-size: 22px;
 }
 
 .n65536 {
@@ -247,7 +247,7 @@ button:hover {
         #ffb3b3
     );
     color: white;
-    font-size: 28px;
+    font-size: 22px;
 }
 /* ====================
    タイル移動アニメーション
@@ -301,11 +301,15 @@ button:hover {
 .moving-tile.n1024,
 .moving-tile.n2048,
 .moving-tile.n4096,
-.moving-tile.n8192,
+.moving-tile.n8192 {
+    font-size: 28px;
+}
+
+
 .moving-tile.n16384,
 .moving-tile.n32768,
 .moving-tile.n65536 {
-    font-size: 28px;
+    font-size: 22px;
 }
 
 /* ====================
@@ -479,11 +483,14 @@ button:hover {
 .moving-tile.n1024,
 .moving-tile.n2048,
 .moving-tile.n4096,
-.moving-tile.n8192,
+.moving-tile.n8192 {
+    font-size: 28px;
+}
+
 .moving-tile.n16384,
 .moving-tile.n32768,
 .moving-tile.n65536 {
-    font-size: 28px;
+    font-size: 22px;
 }
 
     .mode-button {
