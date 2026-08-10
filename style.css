@@ -466,40 +466,74 @@ button:hover {
         box-sizing: border-box;
     }
 
+    
     /* ====================
        スマホ版タイル文字サイズ
-       すべての数字を同じ大きさにする
     ==================== */
 
-    .tile,
-    .moving-tile {
+    /* --------------------------------
+       静止時
+    -------------------------------- */
+
+    /* 64以下 */
+    .tile {
+        font-size: 9vw;
+    }
+
+    /* 128～512 */
+    .tile.n128,
+    .tile.n256,
+    .tile.n512 {
         font-size: 8vw;
     }
 
-    /* 128以上もスマホでは同じ文字サイズ */
-    .tile.n128,
-    .tile.n256,
-    .tile.n512,
+    /* 1024～8192 */
     .tile.n1024,
     .tile.n2048,
     .tile.n4096,
-    .tile.n8192,
+    .tile.n8192 {
+        font-size: 7vw;
+    }
+
+    /* 16384以上 */
     .tile.n16384,
     .tile.n32768,
-    .tile.n65536,
+    .tile.n65536 {
+        font-size: 6vw;
+    }
 
+
+    /* --------------------------------
+       アニメーション時
+    -------------------------------- */
+
+    /* 64以下 */
+    .moving-tile {
+        font-size: 9vw;
+    }
+
+    /* 128～512 */
     .moving-tile.n128,
     .moving-tile.n256,
-    .moving-tile.n512,
+    .moving-tile.n512 {
+        font-size: 8vw;
+    }
+
+    /* 1024～8192 */
     .moving-tile.n1024,
     .moving-tile.n2048,
     .moving-tile.n4096,
-    .moving-tile.n8192,
+    .moving-tile.n8192 {
+        font-size: 7vw;
+    }
+
+    /* 16384以上 */
     .moving-tile.n16384,
     .moving-tile.n32768,
     .moving-tile.n65536 {
-        font-size: 8vw;
+        font-size: 6vw;
     }
+
 
 
 
