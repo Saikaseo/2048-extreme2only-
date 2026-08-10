@@ -1071,51 +1071,120 @@ everyMoveModeButton.addEventListener(
 // ========================================
 
 document.addEventListener(
-"keydown",
-function(e){
+    "keydown",
+    function(e){
 
-    switch(e.key){
+        // ====================================
+        // タイル移動
+        // ====================================
 
-        case "ArrowLeft":
+        switch(e.key){
 
-            e.preventDefault();
+            case "ArrowLeft":
 
-            move("left");
+                e.preventDefault();
 
-            break;
+                move("left");
 
-
-        case "ArrowRight":
-
-            e.preventDefault();
-
-            move("right");
-
-            break;
+                break;
 
 
-        case "ArrowUp":
+            case "ArrowRight":
 
-            e.preventDefault();
+                e.preventDefault();
 
-            move("up");
+                move("right");
 
-            break;
+                break;
 
 
-        case "ArrowDown":
+            case "ArrowUp":
 
-            e.preventDefault();
+                e.preventDefault();
 
-            move("down");
+                move("up");
 
-            break;
+                break;
+
+
+            case "ArrowDown":
+
+                e.preventDefault();
+
+                move("down");
+
+                break;
+
+
+            // ====================================
+            // 戻る
+            // Zキー
+            // ====================================
+
+            case "z":
+            case "Z":
+
+                e.preventDefault();
+
+                undo();
+
+                break;
+
+
+            // ====================================
+            // リスタート
+            // Rキー
+            // ====================================
+
+            case "r":
+            case "R":
+
+                e.preventDefault();
+
+                if(isAnimating){
+
+                    return;
+
+                }
+
+                nextTileId = 1;
+
+                initBoard();
+
+                break;
+
+
+            // ====================================
+            // 強制追加
+            // Fキー
+            // ====================================
+
+            case "f":
+            case "F":
+
+                e.preventDefault();
+
+                if(isAnimating){
+
+                    return;
+
+                }
+
+                // 強制追加モードをON
+                addTileOnInvalidMove = true;
+
+                invalidMoveOccurred = false;
+
+                updateModeButtons();
+
+                break;
+
+        }
 
     }
-
-}
-
 );
+
+
 
 // ========================================
 // リスタート

@@ -466,32 +466,42 @@ button:hover {
         box-sizing: border-box;
     }
 
-    .tile {
-        font-size: 9vw;
+    /* ====================
+       スマホ版タイル文字サイズ
+       すべての数字を同じ大きさにする
+    ==================== */
+
+    .tile,
+    .moving-tile {
+        font-size: 8vw;
     }
 
-.moving-tile {
-    font-size: 9vw;
-}
+    /* 128以上もスマホでは同じ文字サイズ */
+    .tile.n128,
+    .tile.n256,
+    .tile.n512,
+    .tile.n1024,
+    .tile.n2048,
+    .tile.n4096,
+    .tile.n8192,
+    .tile.n16384,
+    .tile.n32768,
+    .tile.n65536,
 
     .moving-tile.n128,
-.moving-tile.n256,
-.moving-tile.n512 {
-    font-size: 34px;
-}
+    .moving-tile.n256,
+    .moving-tile.n512,
+    .moving-tile.n1024,
+    .moving-tile.n2048,
+    .moving-tile.n4096,
+    .moving-tile.n8192,
+    .moving-tile.n16384,
+    .moving-tile.n32768,
+    .moving-tile.n65536 {
+        font-size: 8vw;
+    }
 
-.moving-tile.n1024,
-.moving-tile.n2048,
-.moving-tile.n4096,
-.moving-tile.n8192 {
-    font-size: 28px;
-}
 
-.moving-tile.n16384,
-.moving-tile.n32768,
-.moving-tile.n65536 {
-    font-size: 22px;
-}
 
     .mode-button {
         padding: 8px 10px;
