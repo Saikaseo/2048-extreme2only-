@@ -1,5 +1,11 @@
 const SIZE = 4;
 
+// ========================================
+// 自動保存
+// ========================================
+
+const SAVE_KEY = "2048SaveData";
+
 let board = [];
 let score = 0;
 
@@ -20,6 +26,11 @@ let isAnimating = false;
 //
 let addTileOnInvalidMove = false;
 let invalidMoveOccurred = false;
+
+// 「移動のみ」モード
+// trueの間は、新しい2を追加せず移動だけ行う
+let moveOnlyMode = false;
+
 // ========================================
 // HTML要素
 // ========================================
@@ -31,6 +42,133 @@ const modeBox =
 
 const everyMoveModeButton =
     document.getElementById("everyMoveMode");
+
+const moveOnlyModeButton =
+    document.getElementById("moveOnlyMode");
+
+// ========================================
+// ゲーム自動保存
+// ========================================
+
+function saveGame(){
+
+    const data = {
+
+        board:
+            board,
+
+        score:
+            score,
+
+        history:
+            history,
+
+        nextTileId:
+            nextTileId,
+
+        addTileOnInvalidMove:
+            addTileOnInvalidMove,
+
+        invalidMoveOccurred:
+            invalidMoveOccurred,
+
+        moveOnlyMode:
+            moveOnlyMode
+
+    };
+
+    localStorage.setItem(
+        SAVE_KEY,
+        JSON.stringify(data)
+    );
+
+}
+
+
+// ========================================
+// 保存データ読み込み
+// ========================================
+
+function loadGame(){
+
+    const saved =
+        localStorage.getItem(SAVE_KEY);
+
+    if(!saved){
+
+        return false;
+
+    }
+
+    try{
+
+        const data =
+            JSON.parse(saved);
+
+
+        // 盤面
+        if(data.board){
+
+            board =
+                data.board;
+
+        }else{
+
+            return false;
+
+        }
+
+
+        // スコア
+        score =
+            data.score || 0;
+
+
+        // Undo履歴
+        history =
+            data.history || [];
+
+
+        // 次のタイルID
+        nextTileId =
+            data.nextTileId || 1;
+
+
+        // 強制追加モード
+        addTileOnInvalidMove =
+            data.addTileOnInvalidMove || false;
+
+
+        // 無効移動状態
+        invalidMoveOccurred =
+            data.invalidMoveOccurred || false;
+
+
+        // 移動のみモード
+        moveOnlyMode =
+            data.moveOnlyMode || false;
+
+
+        // 画面を更新
+        drawBoard();
+
+        updateModeButtons();
+
+
+        return true;
+
+    }catch(error){
+
+        console.error(
+            "保存データの読み込みに失敗しました。",
+            error
+        );
+
+        return false;
+
+    }
+
+}
 
 // ========================================
 // タイル作成
@@ -88,6 +226,8 @@ if(history.length > MAX_HISTORY){
 
 }
 
+saveGame();
+
 }
 
 function undo(){
@@ -110,6 +250,9 @@ nextTileId = last.nextTileId;
 
 drawBoard();
 
+// Undo後の状態を保存
+saveGame();
+
 }
 
 // ========================================
@@ -127,6 +270,7 @@ function initBoard(){
     // モードを通常状態に戻す
     addTileOnInvalidMove = false;
     invalidMoveOccurred = false;
+    moveOnlyMode = false;
 
     updateModeButtons();
 
@@ -147,6 +291,9 @@ addRandomTile();
 addRandomTile();
 
 drawBoard();
+
+// 新しいゲームの状態を保存
+saveGame();
 
 }
 
@@ -708,15 +855,18 @@ if(!moved){
 
         if(newTile){
 
-            drawBoard(
-                newTile.id
-            );
+    drawBoard(
+        newTile.id
+    );
 
-        }else{
+}else{
 
-            drawBoard();
+    drawBoard();
 
-        }
+}
+
+// 強制追加後の状態を保存
+saveGame();
 
     }
 
@@ -739,15 +889,19 @@ if(!moved){
 // ====================================
 
 // ====================================
-// 有効な移動をしたら通常状態へ戻す
+// 有効な移動
 // ====================================
 
+// 強制追加モードは、有効な移動をしたら終了
 addTileOnInvalidMove = false;
 
+// 無効移動の表示状態もリセット
 invalidMoveOccurred = false;
 
-updateModeButtons();
 
+// ====================================
+// Undo用に移動前を保存
+// ====================================
 
 history.push({
 
@@ -772,17 +926,35 @@ if(
 }
 
 
+// ====================================
 // 移動後の盤面
+// ====================================
+
 board =
     newBoard;
 
 
 // ====================================
-// 新しい2を追加
+// 新しい2を追加するか
 // ====================================
 
-const newTile =
-    addRandomTile();
+let newTile = null;
+
+// 「移動のみ」モードでは
+// 新しい2を追加しない
+if(!moveOnlyMode){
+
+    newTile =
+        addRandomTile();
+
+}
+
+
+// ====================================
+// ボタン表示を更新
+// ====================================
+
+updateModeButtons();
 
 
 // ====================================
@@ -794,6 +966,9 @@ animateMovement(
     allMovements,
     newTile
 );
+
+// 移動後の状態を保存
+saveGame();
 
 }
 
@@ -1021,6 +1196,18 @@ function updateModeButtons(){
 
 
     // ====================================
+    // 移動のみモード中
+    // ====================================
+
+    if(moveOnlyMode){
+
+        modeBox.style.visibility = "visible";
+
+        return;
+    }
+
+
+    // ====================================
     // 無効な移動が発生した
     // ====================================
 
@@ -1057,11 +1244,50 @@ everyMoveModeButton.addEventListener(
 
         }
 
+        // 「移動のみ」モードを終了
+        moveOnlyMode = false;
+
+        // 強制追加モードをON
         addTileOnInvalidMove = true;
 
+        // 無効移動の表示状態をリセット
         invalidMoveOccurred = false;
 
         updateModeButtons();
+
+        // モード変更を保存
+        saveGame();
+
+    }
+);
+
+// ========================================
+// 「移動のみ」ボタン
+// ========================================
+
+moveOnlyModeButton.addEventListener(
+    "click",
+    function(){
+
+        if(isAnimating){
+
+            return;
+
+        }
+
+        // 「移動のみ」モードをON
+        moveOnlyMode = true;
+
+        // 強制追加モードはOFF
+        addTileOnInvalidMove = false;
+
+        // ボタンを表示し続ける
+        invalidMoveOccurred = true;
+
+        updateModeButtons();
+
+        // モード変更を保存
+        saveGame();
 
     }
 );
@@ -1170,12 +1396,18 @@ document.addEventListener(
 
                 }
 
+                // 「移動のみ」モードを終了
+                moveOnlyMode = false;
+
                 // 強制追加モードをON
                 addTileOnInvalidMove = true;
 
                 invalidMoveOccurred = false;
 
                 updateModeButtons();
+
+                // モード変更を保存
+                saveGame();
 
                 break;
 
@@ -1316,6 +1548,12 @@ false
 // 開始
 // ========================================
 
-updateModeButtons();
+// 保存データがあれば続きから開始
+if(!loadGame()){
 
-initBoard();
+    // 保存データがなければ新規ゲーム
+    updateModeButtons();
+
+    initBoard();
+
+}
