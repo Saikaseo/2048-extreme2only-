@@ -492,14 +492,14 @@ button:hover {
     .tile.n2048,
     .tile.n4096,
     .tile.n8192 {
-        font-size: 7vw;
+        font-size: 8vw;
     }
 
     /* 16384以上 */
     .tile.n16384,
     .tile.n32768,
     .tile.n65536 {
-        font-size: 4vw;
+        font-size: 7vw;
     }
 
 
@@ -524,14 +524,14 @@ button:hover {
     .moving-tile.n2048,
     .moving-tile.n4096,
     .moving-tile.n8192 {
-        font-size: 7vw;
+        font-size: 8vw;
     }
 
     /* 16384以上 */
     .moving-tile.n16384,
     .moving-tile.n32768,
     .moving-tile.n65536 {
-        font-size: 4vw;
+        font-size: 7vw;
     }
 
 
