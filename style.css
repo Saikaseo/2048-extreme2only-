@@ -477,14 +477,14 @@ button:hover {
 
     /* 64以下 */
     .tile {
-        font-size: 10vw;
+        font-size: 12vw;
     }
 
     /* 128～512 */
     .tile.n128,
     .tile.n256,
     .tile.n512 {
-        font-size: 9vw;
+        font-size: 10vw;
     }
 
     /* 1024～8192 */
