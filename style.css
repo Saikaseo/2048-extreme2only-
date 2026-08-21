@@ -555,4 +555,15 @@ button:hover {
         max-width: 100%;
         overflow-x: hidden;
     }
+
+#buttons button {
+
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    -webkit-touch-callout: none;
+
+}
+
 }
