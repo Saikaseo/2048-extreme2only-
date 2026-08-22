@@ -1411,6 +1411,38 @@ document.addEventListener(
 
                 break;
 
+// ====================================
+// 移動のみ
+// Gキー
+// ====================================
+
+case "g":
+case "G":
+
+    e.preventDefault();
+
+    if(isAnimating){
+
+        return;
+
+    }
+
+    // 「移動のみ」モードをON
+    moveOnlyMode = true;
+
+    // 強制追加モードはOFF
+    addTileOnInvalidMove = false;
+
+    // ボタンを表示し続ける
+    invalidMoveOccurred = true;
+
+    updateModeButtons();
+
+    // モード変更を保存
+    saveGame();
+
+    break;
+
         }
 
     }

@@ -29,38 +29,71 @@ h1 {
 }
 
 /* ====================
-   上部ボタン
+   上部
 ==================== */
 
 .top-bar {
     width: 420px;
-    display: flex;
+    height: 64px;
+
+    display: grid;
+
+    /* スコアとリスタートの位置を固定 */
+    grid-template-columns: 150px 120px;
+
     justify-content: space-between;
+
     align-items: center;
+
     margin-bottom: 15px;
 }
 
 .score-box {
+    width: 150px;
+    height: 60px;
+
     background: #bbada0;
     color: white;
-    padding: 10px 20px;
+
+    padding: 7px 10px;
+
     border-radius: 8px;
+
     font-weight: bold;
     text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* スコアの桁数が増えても幅を変えない */
+    flex-shrink: 0;
 }
 
 .score-box span {
     display: block;
+
     font-size: 26px;
+
+    /* 数字が増えてもレイアウトを崩しにくくする */
+    line-height: 1;
+
+    white-space: nowrap;
 }
 
 button {
     border: none;
+
     background: #8f7a66;
+
     color: white;
+
     padding: 12px 20px;
+
     border-radius: 8px;
+
     cursor: pointer;
+
     font-size: 16px;
 
     /* スマホの連続タップによる拡大を防止 */
@@ -76,25 +109,68 @@ button:hover {
     opacity: 0.9;
 }
 
+
 /* ====================
-   強制追加ボタン
+   盤面下の操作ボタン
+==================== */
+
+.bottom-controls {
+
+    width: 420px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 15px;
+
+}
+
+
+/* ====================
+   戻すボタン
+==================== */
+
+#undo {
+
+    min-width: 90px;
+
+}
+
+
+/* ====================
+   強制追加・移動のみ
 ==================== */
 
 .mode-box {
-    width: 420px;
+
     height: 44px;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
     gap: 10px;
-    margin-bottom: 15px;
+
 }
 
+
 .mode-button {
+
     padding: 9px 14px;
+
     font-size: 14px;
+
     background: #d8cfc5;
+
     color: #776e65;
+
 }
 
 /* ====================
@@ -450,17 +526,109 @@ button:hover {
     }
 
     .top-bar {
-        width: calc(100vw - 20px);
-        max-width: 420px;
-        box-sizing: border-box;
-    }
 
-    .mode-box {
-        width: calc(100vw - 20px);
-        max-width: 420px;
-        height: 44px;
-        box-sizing: border-box;
-    }
+    width: calc(100vw - 20px);
+
+    max-width: 420px;
+
+    height: 60px;
+
+    /* スマホでも左右の位置を固定 */
+    grid-template-columns:
+        150px
+        120px;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* スマホのスコア欄 */
+.score-box {
+
+    width: 150px;
+
+    height: 60px;
+
+    padding: 7px 8px;
+
+}
+
+
+/* スコアの数字 */
+.score-box span {
+
+    font-size: 24px;
+
+    /* 桁数が増えても横幅を変更しない */
+    white-space: nowrap;
+
+}
+
+
+/* リスタート */
+#restart {
+
+    width: 120px;
+
+    padding-left: 8px;
+    padding-right: 8px;
+
+    white-space: nowrap;
+
+}
+
+
+/* ====================
+   盤面下のボタン
+==================== */
+
+.bottom-controls {
+
+    width: calc(100vw - 20px);
+
+    max-width: 420px;
+
+    margin-top: 15px;
+
+    gap: 8px;
+
+}
+
+
+/* 戻す */
+#undo {
+
+    min-width: 80px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+
+/* 強制追加・移動のみ */
+.mode-box {
+
+    width: auto;
+
+    height: 44px;
+
+    gap: 8px;
+
+}
+
+
+/* モードボタン */
+.mode-button {
+
+    padding: 8px 10px;
+
+    font-size: 13px;
+
+}
 
     #board {
         width: calc(100vw - 20px);

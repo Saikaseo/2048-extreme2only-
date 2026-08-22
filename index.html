@@ -16,35 +16,38 @@
 
     <div class="top-bar">
 
-        <div class="score-box">
-            SCORE
-            <span id="score">0</span>
-        </div>
-
-        <button id="undo">
-            戻す
-        </button>
-
-        <button id="restart">
-            リスタート
-        </button>
-
+    <div class="score-box">
+        SCORE
+        <span id="score">0</span>
     </div>
 
-    <!-- 無効な移動後に表示するボタン -->
-<div class="mode-box" id="modeBox">
-
-    <button id="everyMoveMode" class="mode-button">
-        強制追加
-    </button>
-
-    <button id="moveOnlyMode" class="mode-button">
-        移動のみ
+    <button id="restart">
+        リスタート
     </button>
 
 </div>
 
-    <div id="board"></div>
+<div id="board"></div>
+
+<!-- 盤面下の操作ボタン -->
+<div class="bottom-controls">
+
+    <button id="undo">
+        戻す
+    </button>
+
+    <!-- 無効な移動後に表示するボタン -->
+    <div class="mode-box" id="modeBox">
+
+        <button id="everyMoveMode" class="mode-button">
+            強制追加
+        </button>
+
+        <button id="moveOnlyMode" class="mode-button">
+            移動のみ
+        </button>
+
+    </div>
 
 </div>
 
